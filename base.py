@@ -12,6 +12,7 @@ from streamlit.runtime.uploaded_file_manager import UploadedFile
 st.session_state['processed_files'] = set()
 st.title("Is My Engine Fucked?")
 
+
 def get_rpm_acceleration_data(base_path: str) -> pd.DataFrame:
     combined_df = None
     current_date = 'unknown'
@@ -45,6 +46,7 @@ def get_rpm_acceleration_data(base_path: str) -> pd.DataFrame:
     # ax.axis([3500, 6300, 1000000, 6000000])
     return result
 
+st.info("this only works with alfano files, plz drop a known good engine run in the form of an alfano zip")
 
 good_runs_ls = list()
 good_runs = st.file_uploader(label="known good engine run(s)", accept_multiple_files=True)
@@ -74,6 +76,7 @@ for uploaded_file in good_runs:
         good_runs_ls.append(result)
         st.session_state.processed_files.update(uploaded_file.file_id)
 
+st.info("everything else goes here")
 
 others = st.file_uploader(label="other runs", accept_multiple_files=True)
 other_runs = dict()
